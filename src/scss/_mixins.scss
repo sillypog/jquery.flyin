@@ -1,0 +1,7 @@
+// TRANSITIONS
+@mixin transition($prop, $time, $ease) {
+	-webkit-transition: $prop $time $ease;
+	-mox-transition: $prop $time $ease;
+	-o-transition: $prop $time $ease;
+	transition: $prop $time $ease;
+}

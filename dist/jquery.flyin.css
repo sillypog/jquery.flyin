@@ -1,0 +1,49 @@
+.flyin_container {
+  position: fixed;
+  overflow: hidden; }
+  .flyin_container > * {
+    position: relative; }
+
+.flyin_container.top {
+  top: 0; }
+  .flyin_container.top > * {
+    -webkit-transition: top 0.4s ease-out;
+    -mox-transition: top 0.4s ease-out;
+    -o-transition: top 0.4s ease-out;
+    transition: top 0.4s ease-out;
+    top: -100%; }
+  .flyin_container.top.show > * {
+    top: 0%; }
+
+.flyin_container.right {
+  right: 0; }
+  .flyin_container.right > * {
+    -webkit-transition: right 0.4s ease-out;
+    -mox-transition: right 0.4s ease-out;
+    -o-transition: right 0.4s ease-out;
+    transition: right 0.4s ease-out;
+    right: -100%; }
+  .flyin_container.right.show > * {
+    right: 0%; }
+
+.flyin_container.bottom {
+  bottom: 0; }
+  .flyin_container.bottom > * {
+    -webkit-transition: bottom 0.4s ease-out;
+    -mox-transition: bottom 0.4s ease-out;
+    -o-transition: bottom 0.4s ease-out;
+    transition: bottom 0.4s ease-out;
+    bottom: -100%; }
+  .flyin_container.bottom.show > * {
+    bottom: 0%; }
+
+.flyin_container.left {
+  left: 0; }
+  .flyin_container.left > * {
+    -webkit-transition: left 0.4s ease-out;
+    -mox-transition: left 0.4s ease-out;
+    -o-transition: left 0.4s ease-out;
+    transition: left 0.4s ease-out;
+    left: -100%; }
+  .flyin_container.left.show > * {
+    left: 0%; }

@@ -1,0 +1,31 @@
+html{
+	height:100%;
+	width:100%;
+}
+body{
+	margin:0;
+	height:100%;
+	width:100%;
+}
+
+#content { margin-top: 50px; }
+
+.component{
+	width:200px;
+	height:80px;
+	background-color: #000;
+	border-radius: 10px;
+	position:relative;
+	text-align: center;
+	font-family: sans-serif;
+	font-weight: bold;
+	color: #fff;
+	line-height: 80px;
+}
+
+.flyin_container.left, .flyin_container.right{
+	bottom: 200px;
+}
+.flyin_container.top, .flyin_container.bottom{
+	right:200px;
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Flyin Test</title>
+	<link href="../bower_components/bootstrap-css/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../bower_components/bootstrap-css/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="../dist/jquery.flyin.css" rel="stylesheet">
+
+	<link href="demo.css" rel="stylesheet">
+</head>
+<body>
+	<div class="navbar navbar-fixed-top navbar-inverse">
+	  <div class="navbar-inner">
+			<div class="container-fluid">
+		    <span class="brand">Flyin Test</span>
+	  	</div>
+	  </div>
+	</div>
+
+	<div id="content" class="container-fluid">
+		<!--<div id="toggle-button" class="btn btn-large disabled">Toggle Component Display</div>-->
+		<h2>Flyins</h2>
+		<div class="alert alert-error hidden"></div>
+		<form id="form-proto" class="form-inline hidden">
+			<fieldset>
+				<select class="select-direction">
+					<option>top</option>
+					<option>right</option>
+					<option>bottom</option>
+					<option>left</option>
+				</select>
+				<select class="select-content">
+					<option>synchronous</option>
+					<option>asynchronous</option>
+				</select>
+				<button class="create-flyin btn">Create</button>
+				<button class="toggle-flyin btn disabled">Toggle Display</button>
+			</fieldset>
+		</form>
+		<form id="form-0" class="form-inline">
+			<fieldset>
+				<select class="select-direction">
+					<option>top</option>
+					<option>right</option>
+					<option>bottom</option>
+					<option>left</option>
+				</select>
+				<select class="select-content">
+					<option>synchronous</option>
+					<option>asynchronous</option>
+				</select>
+				<button class="create-flyin btn">Create</button>
+				<button class="toggle-flyin btn disabled">Toggle Display</button>
+			</fieldset>
+		</form>
+		<button class="create-form btn">New Flyin</button>
+	</div>
+
+
+	<script src="../bower_components/jquery/jquery.min.js"></script>
+	<script src="../bower_components/bootstrap-css/js/bootstrap.min.js"></script>
+	<script src="../dist/jquery.flyin.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+			var contents = {
+					synchronous: $('<div class="component">Hello</div>'),
+					asynchronous: 'asynchronous_content.html'
+				};
+
+			$('.create-flyin').on('click', getCreateFlyin());
+			$('.create-form').on('click', getCreateForm());
+
+			function getCreateForm(){
+				var count = 0;
+				return function createForm(e){
+					$('#form-proto').clone(true).attr('id', 'form-'+(++count)).removeClass('hidden').insertBefore($(e.currentTarget));
+				}
+			};
+
+			function getCreateFlyin(){
+				var count = 0;
+				return function createFlyin(e){
+					e.preventDefault();
+					if ($(e.currentTarget).text() == 'Loading...'){
+						return;	// Because removing the listener hasn't worked
+					}
+
+					$(e.currentTarget).off('click').addClass('disabled').text('Loading...');	// off not working?
+
+					var form = $(e.currentTarget).closest('form'),
+						direction = form.find('.select-direction').val(),
+						contentType = form.find('.select-content').val(),
+						content = contents[contentType] instanceof jQuery ? contents[contentType].clone() : contents[contentType],
+						flyin = $('<div id="flyin-'+(count++)+'">').flyin(content, document.body, direction).bind('ready', getReadyCallback()).bind('error', showLoadingError);
+
+					if (content instanceof jQuery){
+						var readyCallback = getReadyCallback();
+						readyCallback();
+					}
+
+
+					function getReadyCallback(){
+						return function(){
+							form.find('.create-flyin').off('click').remove().end().find('.toggle-flyin').removeClass('disabled').on('click', function(e){
+								e.preventDefault();
+								flyin.toggleClass('show');
+							});
+							flyin.addClass('show');
+						}
+					}
+				}
+			}
+
+			function showLoadingError(){
+				$('.alert').removeClass('hidden').text('There was an error loading the resource');
+			}
+			
+		});
+	</script>
+</body>
+</html>

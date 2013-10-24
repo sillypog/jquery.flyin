@@ -1,0 +1,30 @@
+@import "mixins";
+
+@mixin flyin($direction){
+	.flyin_container.#{$direction}{
+		#{$direction}: 0;
+
+		& > * {
+			@include transition($direction, 0.4s, ease-out);
+			#{$direction}: -100%;
+		}
+
+		&.show > * {
+			#{$direction}: 0%;
+		}
+	}
+}
+
+.flyin_container{
+	position: fixed;
+	overflow: hidden;
+
+	& > * {
+		position: relative;
+	}	
+}
+
+@include flyin(top);
+@include flyin(right);
+@include flyin(bottom);
+@include flyin(left);

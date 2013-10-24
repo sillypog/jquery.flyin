@@ -1,0 +1,10 @@
+{
+  "name": "flyin",
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {
+    "qunit": "~1.12.0",
+    "jquery": "~1.10.0",
+    "bootstrap-css": "2.3.2"
+  }
+}
