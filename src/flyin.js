@@ -1,7 +1,7 @@
 (function($){
 
     $.fn.flyin = function(content, parent, direction){
-        parent = parent instanceof jQuery ? parent : $(parent);
+        parent = parent instanceof $ ? parent : $(parent);
 
         function display(element){
             element.width();  // This ensures that the width value is defined so that the show animation plays
@@ -13,7 +13,7 @@
 
         return this.each(function(){
             var $this = $(this).addClass('flyin_container ' + direction);
-            if (content instanceof jQuery){
+            if (content instanceof $){
                  $this.append(content).appendTo(parent);
                  display($this);
             } else {
