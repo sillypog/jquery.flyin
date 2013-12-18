@@ -26,6 +26,11 @@
                     }
                 });
             }
+
+            $this.on('transitionend webkitTransitionEnd', function(){
+                var status = $this.hasClass('show') ? 'showComplete' : 'hideComplete';
+                $this.trigger(status);
+            });
         });
     };
 
