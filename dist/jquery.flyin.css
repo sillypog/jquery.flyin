@@ -1,8 +1,10 @@
 .flyin_container {
   position: fixed;
-  overflow: hidden; }
+  overflow: hidden;
+  pointer-events: none; }
   .flyin_container > * {
-    position: relative; }
+    position: relative;
+    pointer-events: auto; }
 
 .flyin_container.top {
   top: 0; }

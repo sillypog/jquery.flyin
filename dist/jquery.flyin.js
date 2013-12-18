@@ -1,10 +1,10 @@
-/*! flyin - v0.0.1 - 2013-10-24
+/*! flyin - v0.0.1 - 2013-12-17
 * https://github.com/sillypog/flyin
 * Copyright (c) 2013 Peter Hastie; Licensed MIT */
 (function($){
 
     $.fn.flyin = function(content, parent, direction){
-        parent = parent instanceof jQuery ? parent : $(parent);
+        parent = parent instanceof $ ? parent : $(parent);
 
         function display(element){
             element.width();  // This ensures that the width value is defined so that the show animation plays
@@ -16,7 +16,7 @@
 
         return this.each(function(){
             var $this = $(this).addClass('flyin_container ' + direction);
-            if (content instanceof jQuery){
+            if (content instanceof $){
                  $this.append(content).appendTo(parent);
                  display($this);
             } else {
@@ -29,6 +29,11 @@
                     }
                 });
             }
+
+            $this.on('transitionend webkitTransitionEnd', function(){
+                var status = $this.hasClass('show') ? 'showComplete' : 'hideComplete';
+                $this.trigger(status);
+            });
         });
     };
 

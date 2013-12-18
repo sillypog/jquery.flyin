@@ -18,10 +18,12 @@
 .flyin_container{
 	position: fixed;
 	overflow: hidden;
+	pointer-events: none;
 
 	& > * {
 		position: relative;
-	}	
+		pointer-events: auto;
+	}
 }
 
 @include flyin(top);
